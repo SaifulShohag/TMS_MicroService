@@ -33,10 +33,16 @@ public class AuthService {
     }
 
     public String login( String username, String password ) {
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(username, password));
-        User user = userRepository.findByUsername(username).orElseThrow();
-        return jwtConfig.generateToken(username, user.getRole().name());
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username, password));
+            User user = userRepository.findByUsername(username).orElseThrow();
+            System.out.println("Login successful for user: " + username);
+            return jwtConfig.generateToken(username, user.getRole().name());
+        } catch (Exception e) {
+            System.err.println("Login failed for " + username + ": " + e.getMessage());  // Debug error
+            throw e;
+        }
 
     }
 

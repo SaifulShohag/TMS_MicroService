@@ -58,6 +58,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- hot-reload for dev -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>  <!-- Optional: Excludes from production builds -->
+			<optional>true</optional>
+		</dependency>
     </dependencies>
 
     <build>
